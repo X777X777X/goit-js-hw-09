@@ -46,7 +46,7 @@ const options = {
 
 flatpickr('#datetime-picker', options);
 
-function viewOfTime({ days, hours, minutes, seconds }) {
+function viewOfTimer({ days, hours, minutes, seconds }) {
   refs.days.textContent = `${days}`;
   refs.hours.textContent = `${hours}`;
   refs.mins.textContent = `${minutes}`;
