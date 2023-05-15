@@ -30,12 +30,21 @@ const options = {
       refs.start.disabled = false;
     }
 
+
     refs.start.addEventListener('click', () => {
+      if (intervalId) {
+        return; 
+      }
+      refs.input.disabled = true;
+      refs.start.disabled = true;
+
       intervalId = setInterval(() => {
         const differenceInTime = selectedDates[0] - new Date();
 
         if (differenceInTime < 1000) {
           clearInterval(intervalId);
+          refs.input.disabled = false; 
+          intervalId = null; 
         }
         const result = convertMs(differenceInTime);
         viewOfTimer(result);
