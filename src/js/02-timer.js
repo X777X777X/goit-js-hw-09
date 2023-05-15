@@ -4,7 +4,7 @@ import Notiflix from 'notiflix';
 
 const refs = {
   input: document.querySelector('#datetime-picker'),
-  start: document.querySelector('button [data-start]'),
+  start: document.querySelector('button[data-start]'),
   days: document.querySelector('span[data-days]'),
   hours: document.querySelector('span[data-hours]'),
   mins: document.querySelector('span[data-minutes]'),
@@ -20,16 +20,16 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    console.log(selectedDates[0]);
 
     if (selectedDates[0] < new Date()) {
       refs.start.disabled = true;
-      Notiflix.Notify.failure('Erorr');
+      Notiflix.Notify.failure('Please choose a date in the future!');
       return;
     }
     if (selectedDates[0] > new Date()) {
       refs.start.disabled = false;
     }
+
     refs.start.addEventListener('click', () => {
       intervalId = setInterval(() => {
         const differenceInTime = selectedDates[0] - new Date();
