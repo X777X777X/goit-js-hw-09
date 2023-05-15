@@ -4,11 +4,11 @@ import Notiflix from 'notiflix';
 
 const refs = {
   input: document.querySelector('#datetime-picker'),
-  start: document.querySelector('button[data-start]'),
+  start: document.querySelector('button [data-start]'),
   days: document.querySelector('span[data-days]'),
   hours: document.querySelector('span[data-hours]'),
   mins: document.querySelector('span[data-minutes]'),
-  secs: document.querySelector('span[data-seconds]'),
+  secs: document.querySelector('[data-seconds]'),
 };
 
 let intervalId = null;
@@ -24,15 +24,12 @@ const options = {
 
     if (selectedDates[0] < new Date()) {
       refs.start.disabled = true;
-      Notiflix.Notify.failure(
-        'Please choose a date in the future!'
-      );
+      Notiflix.Notify.failure('Erorr');
       return;
     }
     if (selectedDates[0] > new Date()) {
       refs.start.disabled = false;
     }
-
     refs.start.addEventListener('click', () => {
       intervalId = setInterval(() => {
         const differenceInTime = selectedDates[0] - new Date();
@@ -49,7 +46,7 @@ const options = {
 
 flatpickr('#datetime-picker', options);
 
-function viewOfTimer({ days, hours, minutes, seconds }) {
+function viewOfTime({ days, hours, minutes, seconds }) {
   refs.days.textContent = `${days}`;
   refs.hours.textContent = `${hours}`;
   refs.mins.textContent = `${minutes}`;
